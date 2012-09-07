@@ -1,0 +1,11 @@
+{% load i18n %}
+<ul class="breadcrumb">
+	<li><a href="{% url lfs_shop_view %}">{% trans 'Home' %}</a> <span class="divider">/</span></li>
+	{% for object in objects %}
+		{% if forloop.last %}
+			<li class="active">{{ object.name }}</li>
+		{% else %}
+			<li><a href="{{ object.url }}">{{ object.name }}</a> <span class="divider">/</span></li>
+		{% endif %}
+	{% endfor %}
+</ul>
