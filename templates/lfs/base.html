@@ -70,7 +70,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-						<a class="brand" href="{% url lfs.core.views.shop_view %}">LFS Webshop</a>
+						<a class="brand" href="{% url lfs.core.views.shop_view %}">LFS - Lightning Fast Shop</a>
 
                         <div class="nav-collapse collapse">
                             <ul class="nav">
@@ -131,63 +131,61 @@
         {% endblock %}
 
         <div class="container">
+            {% slots_information %}
+
 		    {% block breadcrumbs %}{% endblock %}
 
-			{% slots_information %}
-
-			{% block wrapper %}
-				{% block left-slot-wrapper %}
-					{% if SlotLeft %}
-						<div class="span-5">
-							<div class="left-slot">
-								{% block left-slot %}
-									{% lfs_portlet_slot 'Left' %}
-								{% endblock %}
-							</div>
-						</div>
-					{% endif %}
-				{% endblock %}
-				<div class="{{ content_class }}">
-					<div class="middle-slot">
-						{% block content %}{% endblock %}
-					</div>
-				</div>
-				{% block right-slot-wrapper %}
-					{% if SlotRight %}
-						<div class="span-4 last">
-							<div class="right-slot">
-								{% block right-slot %}
-									{% lfs_portlet_slot 'Right' %}
-								{% endblock %}
-							</div>
-						</div>
-					{% endif %}
-				{% endblock %}
-			{% endblock %}
-            <div id="footer">
-                <div class="container">
-                    {% block footer %}
-                        {% actions Footer %}
-                        {% for action in actions %}
-                            <a href="{{ action.link }}">{{ action.title }}</a>
-                            {% if not forloop.last %}|{% endif %}
-                        {% endfor %}
+            {% block wrapper %}
+                <div class="row-fluid">
+                    <div class="span9 hero-unit">
+                        {% block content %}{% endblock %}
+                    </div>
+                    {% block right-slot-wrapper %}
+                        <div class="span3">
+                            {% if SlotRight %}
+                                {% block right-slot %}
+                                    {% lfs_portlet_slot 'Right' %}
+                                {% endblock %}
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+                    {% block left-slot-wrapper %}
+                        <div class="span3">
+                            {% if SlotLeft %}
+                                {% block left-slot %}
+                                    {% lfs_portlet_slot 'Left' %}
+                                {% endblock %}
+                            {% endif %}
+                        </div>
                     {% endblock %}
                 </div>
-            </div>
-
-            <div id="colophon">
-                <div class="container">
-                    {% block colophon %}
-                        <p>{% trans 'Powered by' %} <a target="_blank" href="http://www.getlfs.com">LFS</a> &mdash; Lightning Fast Shop</p>
-                        <p>
-                            &copy; 2009 - 2011 {% trans 'by' %} Kai Diefenbach and contributors &mdash; {% trans 'All rights reserved' %}
-                        </p>
-                        <p>{% trans 'Distributed under the' %} <a target="_blank" href="http://www.opensource.org/licenses/bsd-license.php">{% trans 'BSD-License' %}</a></p>
-                    {% endblock %}
-                </div>
-            </div>
+            {% endblock %}
 		</div>
+
+        {% block footer %}
+            <div class="container">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul class="nav pull-right">
+                                {% actions Footer %}
+                                {% for action in actions %}
+                                    <li><a href="{{ action.link }}">{{ action.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block colophon %}
+            <div class="container">
+                <p>{% trans 'Powered by' %} <a target="_blank" href="http://www.getlfs.com">LFS</a> &mdash; Lightning Fast Shop</p>
+                <p>&copy; 2009 - 2011 {% trans 'by' %} Kai Diefenbach and contributors &mdash; {% trans 'All rights reserved' %}</p>
+                <p>{% trans 'Distributed under the' %} <a target="_blank" href="http://www.opensource.org/licenses/bsd-license.php">{% trans 'BSD-License' %}</a></p>
+            </div>
+        {% endblock %}
 
 		{% block google-analytics-tracking %}
 			{% google_analytics_tracking %}
