@@ -1,0 +1,38 @@
+{% load i18n lfs_tags %}
+
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
+        <li class="nav-header">
+            {% if title %}
+                {{ title }}
+            {% else %}
+                {% trans 'Cart' %}
+            {% endif %}
+        </li>
+        {% if amount_of_items_int %}
+            <li>
+                {% blocktrans with amount=amount_of_items_locale count counter=amount_of_items_int %}{{ amount }} Article{% plural %}{{ amount }} Articles{% endblocktrans %}
+            </li>
+            <li>
+                {{ price|currency:request }}
+            </li>
+        {% else %}
+            <li>
+                {% trans 'Cart is empty' %}
+            </li>
+        {% endif %}
+        <li>
+            <a href="{% url lfs.cart.views.cart %}">
+                {% trans 'Go to cart' %}
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+    <div class="portlet-footer">
+
+    </div>
+
