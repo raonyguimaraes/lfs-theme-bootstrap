@@ -37,16 +37,16 @@ class SlotsInformationNode(Node):
 
         cache_key = "content-class-%s-%s" % (object.__class__.__name__, object.id)
         content_class = cache.get(cache_key)
-        if content_class is None:
-            content_class = "span-24 last"
-            if context.get("SlotLeft", None) and context.get("SlotRight", None):
-                content_class = "span-15 padding-both"
-            elif context.get("SlotLeft", None):
-                content_class = "span-19 padding-left last"
-            elif context.get("SlotRight", None):
-                content_class = "span-20 padding-right"
-
-            cache.set(cache_key, content_class)
+#        if content_class is None:
+#            content_class = "span-24 last"
+#            if context.get("SlotLeft", None) and context.get("SlotRight", None):
+#                content_class = "span-15 padding-both"
+#            elif context.get("SlotLeft", None):
+#                content_class = "span-19 padding-left last"
+#            elif context.get("SlotRight", None):
+#                content_class = "span-20 padding-right"
+#
+#            cache.set(cache_key, content_class)
 
         context["content_class"] = content_class
         return ''

@@ -133,7 +133,11 @@
         <div class="container">
             {% slots_information %}
 
-		    {% block breadcrumbs %}{% endblock %}
+            <div class="row">
+                <div class="span12">
+                    {% block breadcrumbs %}{% endblock %}
+                </div>
+            </div>
 
             {% block wrapper %}
                 <div class="row-fluid">

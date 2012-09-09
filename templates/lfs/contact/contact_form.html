@@ -1,0 +1,26 @@
+{% extends "lfs/base.html" %}
+{% load i18n %}
+{% load lfs_tags %}
+
+{% block title %}
+    {% trans 'Contact form' %} - {{ block.super }}
+{% endblock %}
+
+{% block section %}contact-form{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumbs _("Contact") %}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{% trans 'Contact form' %}</h1>
+    <p>{% trans 'Please leave us a message. We will answer as soon as possible.' %}</p>
+
+    <form action="{% url lfs_contact_form %}" method="post">
+        {% csrf_token %}
+        {% include "lfs/shop/lfs_form.html" %}
+        <button class="btn btn-primary" type="submit">{% trans 'Send' %}</button>
+    </form>
+
+{% endblock %}
