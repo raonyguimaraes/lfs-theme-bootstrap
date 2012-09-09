@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="pull-right">
+    <form class="form-inline" action="{% url lfs_catalog_set_sorting %}" method="post">
+        {% csrf_token %}
+        <select name="sorting" onchange="this.form.submit()">
+            <option value="price" {% ifequal "price" current %}selected="selected"{% endifequal %}>{% trans 'Price ascending' %}</option>
+            <option value="-price" {% ifequal "-price" current %}selected="selected"{% endifequal %}>{% trans 'Price descending' %}</option>
+            <option value="name" {% ifequal "name" current %}selected="selected"{% endifequal %}>{% trans 'Name ascending' %}</option>
+            <option value="-name" {% ifequal "-name" current %}selected="selected"{% endifequal %}>{% trans 'Name descending' %}</option>
+        </select>
+        <noscript>
+            <button class="btn" type="submit">{% trans 'Go' %}</button>
+        </noscript>
+    </form>
+</div>
