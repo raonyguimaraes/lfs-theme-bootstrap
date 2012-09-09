@@ -11,23 +11,20 @@
     {% breadcrumbs _("Search results") %}
 {% endblock %}
 
-{% block wrapper %}
+{% block content %}
 
-    <h1 class="first-heading">{% trans 'Search results' %}</h1>
+    <h1>{% trans 'Search results' %}</h1>
 
-    <label for="search">{% trans 'Search' %}:</label>
-    <form action="{% url lfs_search %}"
-          class="search-results-form">
-        <input id="search-input"
-               type="text"
-               name="q" />
+    <p>
+        <form class="form-inline" action="{% url lfs_search %}">
+            <label>{% trans 'Search' %}:</label>
+            <input id="search-input" type="text" name="q" />
+            <button class="btn btn-primary" type="submit">{% trans 'Go' %}</button>
+        </form>
+    </p>
 
-        <input type="submit"
-               value="{% trans 'Go!' %}">
-    </form>
-
-    <p class="search-results-description">
-        {% trans 'You searched for' %} <span class="search-results-query">"{{ q }}"</span>.
+    <p>
+        {% trans 'You searched for' %} <span>"{{ q }}"</span>.
         {% blocktrans count total as counter %}1 product was found.{% plural %}{{ counter }} products were found.{% endblocktrans %}
     </p>
 
@@ -39,13 +36,13 @@
         {% paginate %}
         {% sorting %}
 
-        <table class="lfs-default padding-top">
-            <tr>
+        <table class="table table-condensed">
+            <thead>
                 <th>{% trans 'Image' %}</th>
                 <th>{% trans 'Product' %}</th>
-                <th class="number">{% trans 'Price' %}</th>
+                <th>{% trans 'Price' %}</th>
                 <th></th>
-            <tr>
+            <thead>
             {% for product in products %}
                 <tr>
                     <td>
