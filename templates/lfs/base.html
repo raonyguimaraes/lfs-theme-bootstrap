@@ -22,6 +22,16 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+            #livesearch-result {
+                background-color: rgb(255, 255, 255);
+                display: none;
+                margin-top: 7px;
+                padding: 0px;
+                position: absolute;
+                right: 1px;
+                min-width: 354px;
+                z-index: 1000;
+            }
         </style>
 
 		{% compress css %}
@@ -77,6 +87,16 @@
                                 {% block tabs %}
                                     {% tabs %}
                                 {% endblock %}
+                            </ul>
+
+                            <form class="navbar-form pull-right" action="{% url lfs_search %}" autocomplete="off">
+                                <input type="hidden" name="livesearch" value="1" />
+                                <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url lfs_livesearch %}" />
+                                <button type="submit" class="btn btn-small">{% trans 'Go' %}</button>
+                                <div id="livesearch-result" class="well"></div>
+                            </form>
+
+                            <ul class="nav pull-right">
                                 {% if user.is_authenticated %}
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="{% url lfs_my_account %}">
@@ -107,7 +127,7 @@
                                                     <li class="divider"></li>
                                                 {% endif %}
                                             {% endif %}
-
+                                            <li><a href="{% url lfs_my_account %}">{% trans 'My account' %}</a></li>
                                             <li><a href="/logout">{% trans 'Logout' %}</a></li>
                                         </ul>
                                     </li>
@@ -117,16 +137,9 @@
                                     {% endif %}
                                 {% endif %}
                             </ul>
-
-                            <form class="navbar-form pull-right" action="{% url lfs_search %}" autocomplete="off">
-                                <input type="hidden" name="livesearch" value="1" />
-                                <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url lfs_livesearch %}" />
-                                <button type="submit" class="btn btn-small">{% trans 'Go' %}</button>
-                            </form>
                         </div>
 				     </div>
 			    </div>
-			    <div id="livesearch-result" class="container"></div>
 		    </div>
         {% endblock %}
 
