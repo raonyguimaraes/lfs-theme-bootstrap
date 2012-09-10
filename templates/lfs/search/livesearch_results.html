@@ -42,7 +42,7 @@
         {% endfor %}
         <tr>
             <td colspan="3">
-                <a href="{% url lfs_search %}?q={{ q }}">
+                <a href="{% url lfs_search %}?q={{ q }}" class="pull-right">
                     {% trans 'All results' %} ({{ total }})
                 </a>
             </td>
