@@ -1,0 +1,72 @@
+<div id="invoice-address-inline">
+    <div>
+        <label class="form-inline">
+            {{ form.invoice_firstname.label_tag }} *
+        </label>
+        {% if form.invoice_firstname.errors %}
+            {% for error in form.invoice_firstname.errors %}
+                <div><span class="label label-important">{{ error }}</span></div>
+            {% endfor %}
+        {% endif %}
+        {{ form.invoice_firstname }}
+    </div>
+    <div>
+        <label class="form-inline">{{ form.invoice_lastname.label_tag }} *</label>
+        {% if form.invoice_lastname.errors %}
+            {% for error in form.invoice_lastname.errors %}
+                <div><span class="label label-important">{{ error }}</span></div>
+            {% endfor %}
+        {% endif %}
+        {{ form.invoice_lastname }}
+    </div>
+    <div>
+        <label class="form-inline">
+            {{ form.invoice_company_name.label_tag }}{% if settings.LFS_INVOICE_COMPANY_NAME_REQUIRED %} *{% endif %}
+        </label>
+        {% if form.invoice_company_name.errors %}
+            {% for error in form.invoice_company_name.errors %}
+                <div><span class="label label-important">{{ error }}</span></div>
+            {% endfor %}
+        {% endif %}
+        {{ form.invoice_company_name }}
+    </div>
+    {% for field in address_form %}
+        <div>
+            <label class="form-inline">
+                {{ field.label_tag }}{% if field.field.required %} *{% endif %}
+            </label>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div><span class="label label-important">{{ error }}</span></div>
+                {% endfor %}
+            {% endif %}
+            {{ field }}
+        </div>
+    {% endfor %}
+    {% if request.user.is_anonymous %}
+        <div>
+            <label class="form-inline">
+                {{ form.invoice_email.label_tag }}{% if settings.LFS_INVOICE_EMAIL_REQUIRED %} *{% endif %}
+            </label>
+            {% if form.invoice_email.errors %}
+                {% for error in form.invoice_email.errors %}
+                    <div><span class="label label-important">{{ error }}</span></div>
+                {% endfor %}
+            {% endif %}
+            {{ form.invoice_email }}
+        </div>
+    {% endif %}
+    {% if form.invoice_phone %}
+        <div>
+            <label class="form-inline">
+                {{ form.invoice_phone.label_tag }}{% if settings.LFS_INVOICE_PHONE_REQUIRED %} *{% endif %}
+            </label>
+            {% if form.invoice_email.errors %}
+                {% for error in form.invoice_phone.errors %}
+                    <div><span class="label label-important">{{ error }}</span></div>
+                {% endfor %}
+            {% endif %}
+            {{ form.invoice_phone }}
+        </div>
+    {% endif %}
+</div>
