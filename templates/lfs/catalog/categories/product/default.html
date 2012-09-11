@@ -1,0 +1,95 @@
+{% load i18n lfs_tags %}
+
+{% include "lfs/catalog/categories/product/products_navigation.html" %}
+
+{% sorting %}
+
+<h1>
+    {{ category.name }}
+</h1>
+<p>
+    {{ category.description|safe }}
+</p>
+<div id="products">
+    <table class="table table-hover table-condensed">
+        {% for col in products %}
+            <tr>
+                {% for product in col %}
+                    <td onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <a href="{% url lfs.catalog.views.product_view product.slug %}">
+                                    {% if product.image.url_100x100 %}
+                                        <img alt="{{ product.name }}"
+                                             src="{{ product.image.url_200x200 }}"
+                                             class="img-rounded" />
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="span8">
+                                <div class="row">
+                                    <div class="span12">
+                                        <h2><strong>{{ product.name }}</strong></h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="span12">{{ product.obj.get_short_description|safe }}</div>
+                                </div>
+
+                                {% category_product_prices_gross product.obj.id %}
+
+                                <div class="row">
+                                    <div class="pull-right">
+                                        <div class="span12">
+                                            {% if price_starting_from %}
+                                                {% trans "Starting at" %}
+                                            {% endif %}
+                                            {% if product.obj.get_for_sale %}
+                                                <span><s>{{ standard_price|currency:request }}*</s></span>
+                                                <span><strong>{{ price|currency:request }}</strong>*</span>
+                                            {% else %}
+                                                <span><strong>{{ price|currency:request }}</strong>*</span>
+                                            {% endif %}
+                                            {% if product.price_unit %}
+                                                / {{ product.price_unit }}
+                                            {% endif %}
+                                            {% if product.obj.get_active_packing_unit %}
+                                                <div>
+                                                    {{ base_packing_price|currency:request }}* / {{ product.obj.get_packing_info.1 }}
+                                                </div>
+                                            {% endif %}
+                                            {% if product.obj.get_active_base_price %}
+                                                <div>
+                                                    {% if base_price_starting_from %}
+                                                        {% trans "Starting at" %}
+                                                    {% endif %}
+                                                    {{ base_price|currency:request }}*
+                                                    {% if product.obj.get_base_price_unit %}
+                                                        / {{ product.obj.get_base_price_unit }}
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="row">
+                                                <div class="text-warning pull-right">
+                                                    {% if product.price_includes_tax %}
+                                                        {% trans '*inc. VAT' %}
+                                                    {% else  %}
+                                                        {% trans '*exc. VAT' %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <a class="pull-right" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>

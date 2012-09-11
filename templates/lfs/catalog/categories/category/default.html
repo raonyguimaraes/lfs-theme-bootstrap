@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<h1>
+    {{ category.name }}
+</h1>
+<p>
+    {{ category.description|safe }}
+</p>
+<div id="categories">
+    <table class="table">
+        {% for row in categories %}
+            <tr>
+                {% for category in row %}
+                    <td>
+                        <h2>{{ category.name }}</h2>
+                        {% if category.get_image %}
+                        <div>
+                            <a href="{% url lfs_category category.slug %}">
+                                <img src="{{ category.get_image.url_100x100 }}"
+                                     alt="{{ category.name }}" />
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div>
+                            {{ category.short_description|safe }}
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-small btn-primary"
+                               href="{% url lfs_category category.slug %}">{% trans 'Details' %}
+                            </a>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
