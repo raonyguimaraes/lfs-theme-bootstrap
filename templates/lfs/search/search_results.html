@@ -69,26 +69,30 @@
                         {% endfor %}
                     </td>
 
-                    <td class="number">
-                        <div class="product-price">
+                    <td>
+                        <div>
                             {% if product.for_sale %}
-                               <span class="for-sale-standard-price">{{ product.get_standard_price|currency:request }}</span>
-                               <span class="for-sale-price">{{ product|get_for_sale_price:request|currency:request }}*</span>
+                                <span><s>{{ product|get_standard_price:request|currency:request }}*</s></span>
+                                <span><strong>{{ product|get_for_sale_price:request|currency:request }}</strong>*</span>
                             {% else %}
-                            <span class="standard-price">{{ product|get_price:request|currency:request }}*</span>
+                                <span><strong>{{ product|get_price:request|currency:request }}</strong>*</span>
                             {% endif %}
                             {% if product.get_price_unit %}/ {{ product.get_price_unit }}{% endif %}
                             {% if product.active_base_price %}
-                                <div class="base-price">
+                                <div>
                                     {{ product|get_base_price_gross:request|currency:request}}* {% if product.get_base_price_unit %}/ {{ product.get_base_price_unit }}{% endif %}
                                 </div>
                             {% endif %}
-                            <div class="price-disclaimer">
-                                {% trans '*inc. VAT' %}
+                            <div class="text-warning">
+                                {% if product.price_includes_tax %}
+                                    {% trans '*inc. VAT' %}
+                                {% else  %}
+                                    {% trans '*exc. VAT' %}
+                                {% endif %}
                             </div>
                         </div>
                     </td>
-                    <td class="buttons">
+                    <td>
                         <a class="button emphasized"
                            href="{% url lfs_product product.slug %}"
                            type="submit">
