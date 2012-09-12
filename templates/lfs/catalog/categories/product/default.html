@@ -17,30 +17,26 @@
                 {% for product in col %}
                     <td onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
                         <div class="row-fluid">
-                            <div class="span4">
+                            <div class="pull-left">
                                 <a href="{% url lfs.catalog.views.product_view product.slug %}">
                                     {% if product.image.url_100x100 %}
                                         <img alt="{{ product.name }}"
-                                             src="{{ product.image.url_200x200 }}"
+                                             src="{{ product.image.url_100x100 }}"
                                              class="img-rounded" />
                                     {% endif %}
                                 </a>
                             </div>
-                            <div class="span8">
-                                <div class="row">
-                                    <div class="span12">
-                                        <h2><strong>{{ product.name }}</strong></h2>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="span12">{{ product.obj.get_short_description|safe }}</div>
+                            <div class="offset2">
+                                <div class="row-fluid">
+                                    <div><strong>{{ product.name }}</strong></div>
+                                    <div>{{ product.obj.get_short_description|removetags:"p"|safe }}</div>
                                 </div>
 
                                 {% category_product_prices_gross product.obj.id %}
 
-                                <div class="row">
+                                <div class="row-fluid">
                                     <div class="pull-right">
-                                        <div class="span12">
+                                        <div>
                                             {% if price_starting_from %}
                                                 {% trans "Starting at" %}
                                             {% endif %}
@@ -69,7 +65,7 @@
                                                     {% endif %}
                                                 </div>
                                             {% endif %}
-                                            <div class="row">
+                                            <div class="row-fluid">
                                                 <div class="text-warning pull-right">
                                                     {% if product.price_includes_tax %}
                                                         {% trans '*inc. VAT' %}
@@ -82,7 +78,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row-fluid">
                                     <a class="pull-right" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
                                 </div>
                             </div>

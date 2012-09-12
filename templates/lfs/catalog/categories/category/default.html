@@ -14,12 +14,12 @@
                     <td>
                         <h2>{{ category.name }}</h2>
                         {% if category.get_image %}
-                        <div>
-                            <a href="{% url lfs_category category.slug %}">
-                                <img src="{{ category.get_image.url_100x100 }}"
-                                     alt="{{ category.name }}" />
-                            </a>
-                        </div>
+                            <div>
+                                <a href="{% url lfs_category category.slug %}">
+                                    <img src="{{ category.get_image.url_100x100 }}"
+                                         alt="{{ category.name }}" />
+                                </a>
+                            </div>
                         {% endif %}
                         <div>
                             {{ category.short_description|safe }}
