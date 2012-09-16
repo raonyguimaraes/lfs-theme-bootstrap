@@ -164,7 +164,16 @@
 
             {% block wrapper %}
                 <div class="row-fluid">
-                    <div class="span9 hero-unit">
+                    {% block left-slot-wrapper %}
+                        <div class="span3">
+                            {% if SlotLeft %}
+                                {% block left-slot %}
+                                    {% lfs_portlet_slot 'Left' %}
+                                {% endblock %}
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+                    <div class="span6 hero-unit">
                         {% block content %}{% endblock %}
                     </div>
                     {% block right-slot-wrapper %}
@@ -172,15 +181,6 @@
                             {% if SlotRight %}
                                 {% block right-slot %}
                                     {% lfs_portlet_slot 'Right' %}
-                                {% endblock %}
-                            {% endif %}
-                        </div>
-                    {% endblock %}
-                    {% block left-slot-wrapper %}
-                        <div class="span3">
-                            {% if SlotLeft %}
-                                {% block left-slot %}
-                                    {% lfs_portlet_slot 'Left' %}
                                 {% endblock %}
                             {% endif %}
                         </div>
