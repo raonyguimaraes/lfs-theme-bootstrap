@@ -165,7 +165,7 @@
             {% block wrapper %}
                 <div class="row-fluid">
                     {% block left-slot-wrapper %}
-                        <div class="span3">
+                        <div class="span2">
                             {% if SlotLeft %}
                                 {% block left-slot %}
                                     {% lfs_portlet_slot 'Left' %}
@@ -173,11 +173,11 @@
                             {% endif %}
                         </div>
                     {% endblock %}
-                    <div class="span6 hero-unit">
+                    <div class="span8 hero-unit">
                         {% block content %}{% endblock %}
                     </div>
                     {% block right-slot-wrapper %}
-                        <div class="span3">
+                        <div class="span2">
                             {% if SlotRight %}
                                 {% block right-slot %}
                                     {% lfs_portlet_slot 'Right' %}
