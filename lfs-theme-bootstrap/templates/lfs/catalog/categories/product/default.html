@@ -2,12 +2,14 @@
 
 {% sorting %}
 
-<h1>
-    {{ category.name }}
-</h1>
-<p>
-    {{ category.description|safe }}
-</p>
+<h1>{{ category.name }}</h1>
+
+<h3>{% blocktrans count counter=amount_of_products %}({{ amount_of_products }} product){% plural %}({{ amount_of_products }} products){% endblocktrans %}</h3>
+
+<p>{{ category.description|safe }}</p>
+
+{% include "lfs/catalog/categories/product/products_navigation.html" %}
+
 <div id="products">
     <table class="table table-hover table-condensed">
         {% for col in products %}

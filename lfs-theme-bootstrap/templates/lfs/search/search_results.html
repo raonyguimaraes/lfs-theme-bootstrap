@@ -29,11 +29,11 @@
     </p>
 
     {% if products %}
-
         {% if not paginator %}
             {% autopaginate products 10 %}
         {% endif %}
         {% paginate %}
+
         {% sorting %}
 
         <table class="table table-condensed">
@@ -102,5 +102,7 @@
                 </tr>
             {% endfor %}
         </table>
+
+        {% paginate %}
     {% endif %}
 {% endblock %}
