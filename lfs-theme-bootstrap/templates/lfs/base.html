@@ -156,12 +156,6 @@
         <div class="container-fluid">
             {% slots_information %}
 
-            <div class="row-fluid">
-                <div class="span12">
-                    {% block breadcrumbs %}{% endblock %}
-                </div>
-            </div>
-
             {% block wrapper %}
                 <div class="row-fluid">
                     {% block left-slot-wrapper %}
@@ -173,8 +167,17 @@
                             {% endif %}
                         </div>
                     {% endblock %}
-                    <div class="span8 hero-unit">
-                        {% block content %}{% endblock %}
+                    <div class="span8">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                {% block breadcrumbs %}{% endblock %}
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12 hero-unit">
+                                {% block content %}{% endblock %}
+                            </div>
+                        </div>
                     </div>
                     {% block right-slot-wrapper %}
                         <div class="span2">
