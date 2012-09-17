@@ -17,10 +17,14 @@
     <h1>{% trans 'Contact form' %}</h1>
     <p>{% trans 'Please leave us a message. We will answer as soon as possible.' %}</p>
 
-    <form action="{% url lfs_contact_form %}" method="post">
+    <form class="form-horizontal" action="{% url lfs_contact_form %}" method="post">
         {% csrf_token %}
         {% include "lfs/shop/lfs_form.html" %}
-        <button class="btn btn-primary" type="submit">{% trans 'Send' %}</button>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">{% trans 'Send' %}</button>
+            </div>
+        </div>
     </form>
 
 {% endblock %}
