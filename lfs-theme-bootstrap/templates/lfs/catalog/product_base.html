@@ -31,7 +31,7 @@
 
     {% product_navigation product %}
 
-    <div class="overview">
+    <div class="well-small">
         {% current_category product %}
         <a href="{{ current_category.get_absolute_url }}">
            {% trans 'Back to overview' %}
@@ -41,8 +41,6 @@
     <div id="product-inline">
         {{ product_inline|safe }}
     </div>
-
-    <a name="reviews"></a>
 
     {% reviews_for_instance product %}
 
