@@ -14,7 +14,8 @@
             {% if product.get_image %}
                 <a href="{{ product.get_image.image.url_400x400 }}"
                    class="product-image">
-                    <img src="{{ product.get_image.image.url_200x200 }}"
+                    <img class="img-polaroid"
+                         src="{{ product.get_image.image.url_200x200 }}"
                          title="{{ product.get_image.title }}"
                          alt="{{ product.get_image.title }}" />
                 </a>
