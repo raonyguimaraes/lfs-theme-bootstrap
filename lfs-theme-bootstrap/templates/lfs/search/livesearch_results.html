@@ -4,39 +4,75 @@
         {% for product in products %}
             <tr onclick="window.location='{{ product.get_absolute_url }}'">
                 <td>
-                    {% if product.get_image %}
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.get_image.image.url_60x60 }}"
-                                 alt="{{ product.get_name }}"
-                                 title="{{ product.get_name }}" />
-                        </a>
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ product.get_absolute_url }}">
-                        {{ product.get_name }}
-                    </a>
-                    {% for property in product.get_variant_properties %}
-                        <div>
-                            {{ property.title }} : {{ property.value }} {{ property.unit|safe }}
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <a href="{% url lfs.catalog.views.product_view product.slug %}">
+                                {% if product.get_image.image.url_60x60 %}
+                                    <img alt="{{ product.name }}" src="{{ product.get_image.image.url_60x60 }}" class="img-polaroid" />
+                                {% endif %}
+                            </a>
                         </div>
-                    {% endfor %}
 
-                    {% for property in product.get_displayed_properties %}
-                        <div>
-                            {{ property.title }} : {{ property.value }} {{ property.unit|safe }}
+                        <div class="span6">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    {{ product.name }}
+                                </div>
+                            </div>
                         </div>
-                    {% endfor %}
-                </td>
-                <td nowrap="nowrap">
-                    <div>
-                        {{ product|get_price_gross:request|currency:request}}* {% if product.get_price_unit %}/ {{ product.get_price_unit }}{% endif %}
+
+                        {% category_product_prices_gross product.id %}
+                        <div class="span3">
+                            <div class="row-fluid">
+                                <div class="pull-right">
+                                    {% if price_starting_from %}
+                                        {% trans "Starting at" %}
+                                    {% endif %}
+                                    {% if product.obj.get_for_sale %}
+                                        <span><s>{{ standard_price|currency:request }}*</s></span>
+                                        <span><strong>{{ price|currency:request }}</strong>*</span>
+                                    {% else %}
+                                        <span><strong>{{ price|currency:request }}</strong>*</span>
+                                    {% endif %}
+                                    {% if product.price_unit %}
+                                        / {{ product.price_unit }}
+                                    {% endif %}
+                                    {% if product.obj.get_active_packing_unit %}
+                                        <div>
+                                            {{ base_packing_price|currency:request }}* / {{ product.obj.get_packing_info.1 }}
+                                        </div>
+                                    {% endif %}
+                                    {% if product.obj.get_active_base_price %}
+                                        <div>
+                                            {% if base_price_starting_from %}
+                                                {% trans "Starting at" %}
+                                            {% endif %}
+                                            {{ base_price|currency:request }}*
+                                            {% if product.obj.get_base_price_unit %}
+                                                / {{ product.obj.get_base_price_unit }}
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="row-fluid">
+                                <div class="text-warning pull-right">
+                                    {% if product.price_includes_tax %}
+                                        {% trans '*inc. VAT' %}
+                                    {% else  %}
+                                        {% trans '*exc. VAT' %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="row-fluid">
+                                <div class="pull-right">
+                                    <a href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% if product.active_base_price %}
-                        <div>
-                            {{ product|get_base_price_gross:request|currency:request}}* {% if product.get_base_price_unit %}/ {{ product.get_base_price_unit }}{% endif %}
-                        </div>
-                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
