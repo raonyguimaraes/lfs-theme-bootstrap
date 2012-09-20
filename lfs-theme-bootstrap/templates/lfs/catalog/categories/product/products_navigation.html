@@ -12,7 +12,9 @@
                 {% if p == pagination.current_page %}
                     <li class="active"><span>{{ p }}</span></li>
                 {% else %}
-                    <li><a href="{{ pagination.url }}?{{ pagination.getparam }}={{ p }}{{ pagination.getvars }}">{{ p }}</a></li>
+                    <li{% if not forloop.first and not forloop.last %} class="hidden-phone"{% endif %}>
+                        <a href="{{ pagination.url }}?{{ pagination.getparam }}={{ p }}{{ pagination.getvars }}">{{ p }}</a>
+                    </li>
                 {% endif %}
             {% endfor %}
 

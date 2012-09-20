@@ -4,13 +4,11 @@
 
 {% sorting %}
 
-<h1 xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">{{ category.name }}</h1>
+<h1>{{ category.name }}</h1>
 
 <h3>{% blocktrans count counter=amount_of_products %}({{ amount_of_products }} product){% plural %}({{ amount_of_products }} products){% endblocktrans %}</h3>
 
 <p>{{ category.description|safe }}</p>
-
-{% include "lfs/catalog/categories/product/products_navigation.html" %}
 
 <div id="products">
     {% for col in products %}
@@ -19,21 +17,24 @@
                 {% for product in col %}
                     <li class="{{ col|length|get_span }}">
                         <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
-                            {% if product.image.url_100x100 %}
-                                <a href="{% url lfs.catalog.views.product_view product.slug %}">
-                                    <img alt="{{ product.name }}" src="{{ product.image.url_100x100 }}" class="img-polaroid" />
-                                </a>
-                            {% endif %}
+                            <div class="row-fluid">
+                                <div class="caption pull-left">
+                                    {% if product.image.url_100x100 %}
+                                        <a href="{% url lfs.catalog.views.product_view product.slug %}">
+                                            <img alt="{{ product.name }}" src="{{ product.image.url_100x100 }}" class="img-polaroid" />
+                                        </a>
+                                    {% endif %}
+                                </div>
 
-                            <div class="caption">
-                                <h3><strong>{{ product.name }}</strong></h3>
-                                <div>{{ product.obj.get_short_description|removetags:"p"|safe }}</div>
+                                <div class="caption">
+                                    <span class="lead"><strong>{{ product.name }}</strong></span>
+                                    <div>{{ product.obj.get_short_description|removetags:"p"|safe }}</div>
+                                </div>
                             </div>
-
+                            {% category_product_prices_gross product.obj.id %}
                             <div class="caption">
-                                {% category_product_prices_gross product.obj.id %}
                                 <div class="row-fluid">
-                                    <div class="span8">
+                                    <div class="pull-left">
                                         {% if price_starting_from %}
                                             {% trans "Starting at" %}
                                         {% endif %}
@@ -70,8 +71,8 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <div class="span4">
-                                        <a class="btn btn-primary pull-right" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
+                                    <div class="pull-right">
+                                        <a class="btn btn-primary" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
                                     </div>
                                 </div>
                             </div>
