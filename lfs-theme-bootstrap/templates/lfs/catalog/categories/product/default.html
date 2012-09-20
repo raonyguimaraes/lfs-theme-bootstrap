@@ -1,4 +1,6 @@
-{% load i18n lfs_tags %}
+{% load i18n %}
+{% load lfs_tags %}
+{% load lfs_bootstrap_tags %}
 
 {% sorting %}
 
@@ -15,7 +17,7 @@
         <div class="row-fluid">
             <ul class="thumbnails">
                 {% for product in col %}
-                    <li class="span4">
+                    <li class="{{ col|length|get_span }}">
                         <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
                             {% if product.image.url_100x100 %}
                                 <a href="{% url lfs.catalog.views.product_view product.slug %}">

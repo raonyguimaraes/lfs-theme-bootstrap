@@ -80,3 +80,18 @@ def email_text_footer(context):
     return {
         "shop": shop
     }
+
+@register.filter
+def get_span(value):
+    if value == 1:
+        return "span12"
+    elif value == 2:
+        return "span6"
+    elif value == 3:
+        return "span4"
+    elif value == 4:
+        return "span3"
+    elif value == 6:
+        return "span2"
+    else:
+        raise TemplateSyntaxError(_('%s Product cols are not allowed in preferences. Valid values for Product cols are 1, 2, 3, 4 and 6.') % value)
