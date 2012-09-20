@@ -1,5 +1,5 @@
 {% load i18n %}
-<ul class="breadcrumb">
+<ul class="breadcrumb hidden-phone">
 	<li><a href="{% url lfs_shop_view %}">{% trans 'Home' %}</a> <span class="divider">/</span></li>
 	{% for object in objects %}
 		{% if forloop.last %}
