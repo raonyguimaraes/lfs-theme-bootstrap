@@ -1,6 +1,6 @@
 {% load i18n lfs_tags %}
 {% if products %}
-    <table id="livesearch-results-table"  class="table table-hover table-condensed">
+    <table id="livesearch-results-table"  class="table table-hover table-condensed hidden-phone">
         {% for product in products %}
             <tr onclick="window.location='{{ product.get_absolute_url }}'">
                 <td>
