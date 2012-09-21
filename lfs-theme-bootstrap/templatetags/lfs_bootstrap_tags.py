@@ -143,7 +143,6 @@ def cart_for_header(context):
     if cart is None:
         amount_of_items_locale = None
     else:
-        cart_amount_of_items = cart.get_amount_of_items()
-        amount_of_items_locale = locale.format("%.0f", cart_amount_of_items)
+        amount_of_items_locale = int(cart.get_amount_of_items())
 
     return amount_of_items_locale
