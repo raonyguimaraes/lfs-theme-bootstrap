@@ -140,6 +140,15 @@
                                 <div id="livesearch-result" class="well"></div>
                             </form>
                             <ul class="nav pull-right">
+                                {% cart_for_header as cart_amount %}
+                                <li>
+                                    <a href="{% url lfs.cart.views.cart %}">
+                                        <i class="icon-shopping-cart icon"></i>
+                                        {% if cart_amount %}
+                                            <span class="badge badge-info">{{ cart_amount }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
                                 <li class="divider-vertical"></li>
                                 {% if user.is_authenticated %}
                                     <li class="dropdown">

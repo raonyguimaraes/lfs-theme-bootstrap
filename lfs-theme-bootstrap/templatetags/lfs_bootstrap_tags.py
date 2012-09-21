@@ -1,3 +1,6 @@
+#python imports
+import locale
+
 # django imports
 from django.conf import settings
 from django.core.cache import cache
@@ -125,6 +128,22 @@ def categories_for_header(context):
     cache.set(cache_key, result)
     return result
 
+
 @register.inclusion_tag('lfs/catalog/category_children.html', takes_context=True)
 def sub_categories_for_header(context, categories):
     return {"categories": categories}
+
+
+@register.assignment_tag(takes_context=True)
+def cart_for_header(context):
+    import lfs.cart.utils
+    request = context.get("request")
+
+    cart = lfs.cart.utils.get_cart(request)
+    if cart is None:
+        amount_of_items_locale = None
+    else:
+        cart_amount_of_items = cart.get_amount_of_items()
+        amount_of_items_locale = locale.format("%.0f", cart_amount_of_items)
+
+    return amount_of_items_locale
