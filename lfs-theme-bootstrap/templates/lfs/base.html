@@ -203,15 +203,15 @@
             {% block wrapper %}
                 <div class="row-fluid">
                     {% block left-slot-wrapper %}
-                        <div class="span2 hidden-phone">
-                            {% if SlotLeft %}
+                        {% if SlotLeft %}
+                            <div class="span2 hidden-phone">
                                 {% block left-slot %}
                                     {% lfs_portlet_slot 'Left' %}
                                 {% endblock %}
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% endif %}
                     {% endblock %}
-                    <div class="span8">
+                    <div class="span{{ 12|span_for_main_content:SlotLeft|span_for_main_content:SlotRight }}">
                         <div class="row-fluid hidden-phone">
                             <div class="span12">
                                 {% block breadcrumbs %}{% endblock %}
@@ -224,13 +224,13 @@
                         </div>
                     </div>
                     {% block right-slot-wrapper %}
-                        <div class="span2 hidden-phone">
-                            {% if SlotRight %}
+                        {% if SlotRight %}
+                            <div class="span2 hidden-phone">
                                 {% block right-slot %}
                                     {% lfs_portlet_slot 'Right' %}
                                 {% endblock %}
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% endif %}
                     {% endblock %}
                 </div>
             {% endblock %}

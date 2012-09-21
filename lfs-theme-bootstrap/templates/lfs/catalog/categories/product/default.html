@@ -15,7 +15,7 @@
         <div class="row-fluid">
             <ul class="thumbnails">
                 {% for product in col %}
-                    <li class="{{ col|length|get_span }}">
+                    <li class="{{ col|length|span_for_product_category }}">
                         <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
                             <div class="row-fluid">
                                 <div class="caption pull-left">

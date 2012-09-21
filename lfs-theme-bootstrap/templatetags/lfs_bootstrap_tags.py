@@ -1,6 +1,3 @@
-#python imports
-import locale
-
 # django imports
 from django.conf import settings
 from django.core.cache import cache
@@ -87,7 +84,7 @@ def email_text_footer(context):
 
 
 @register.filter
-def get_span(value):
+def span_for_product_category(value):
     if value == 1:
         return "span12"
     elif value == 2:
@@ -100,6 +97,13 @@ def get_span(value):
         return "span2"
     else:
         raise TemplateSyntaxError(_('%s Product cols are not allowed in preferences. Valid values for Product cols are 1, 2, 3, 4 and 6.') % value)
+
+
+@register.filter
+def span_for_main_content(value, arg):
+    if arg:
+        return value - 2
+    return value
 
 
 @register.assignment_tag(takes_context=True)
