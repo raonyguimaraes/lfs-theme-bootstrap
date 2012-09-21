@@ -1,4 +1,5 @@
 # django imports
+from django.conf import settings
 from django.core.cache import cache
 from django.template import Library, Node, TemplateSyntaxError
 from django.utils.translation import ugettext as _
@@ -81,6 +82,7 @@ def email_text_footer(context):
         "shop": shop
     }
 
+
 @register.filter
 def get_span(value):
     if value == 1:
@@ -95,3 +97,34 @@ def get_span(value):
         return "span2"
     else:
         raise TemplateSyntaxError(_('%s Product cols are not allowed in preferences. Valid values for Product cols are 1, 2, 3, 4 and 6.') % value)
+
+
+@register.assignment_tag(takes_context=True)
+def categories_for_header(context):
+    request = context.get("request")
+
+    product = context.get("product")
+    category = context.get("category")
+    object = category or product
+
+    if object is None:
+        object_id = None
+    else:
+        object_id = object.id
+
+    cache_key = "%s-categories-header-%s-%s" % (settings.CACHE_MIDDLEWARE_KEY_PREFIX, object.__class__.__name__, object_id)
+    result = cache.get(cache_key)
+    if result is not None:
+        return result
+
+    current_categories = lfs.core.utils.get_current_categories(request, object)
+
+    ct = lfs.core.utils.CategoryTree(current_categories, 1, 4)
+    result = ct.get_category_tree()
+
+    cache.set(cache_key, result)
+    return result
+
+@register.inclusion_tag('lfs/catalog/category_children.html', takes_context=True)
+def sub_categories_for_header(context, categories):
+    return {"categories": categories}
