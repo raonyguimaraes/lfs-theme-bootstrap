@@ -116,8 +116,8 @@
 
                                 {% categories_for_header as header_categories %}
                                 {% if header_categories %}
-                                    <li class="dropdown" id="menu1">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1" title="{% trans 'View Products' %}">
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="{% trans 'View Products' %}">
                                             {% trans 'Products' %}
                                             <b class="caret"></b>
                                         </a>
@@ -152,7 +152,7 @@
                                 <li class="divider-vertical"></li>
                                 {% if user.is_authenticated %}
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url lfs_my_account %}">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                             {% if user.first_name %}
                                                 {{ user.first_name }} {{user.last_name}}
                                             {% else %}
