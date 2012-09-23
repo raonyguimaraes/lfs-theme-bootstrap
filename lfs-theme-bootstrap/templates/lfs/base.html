@@ -44,6 +44,9 @@
             .hero-unit h2 {
                 font-size: 21px;
             }
+            .carousel-control {
+                top: 50%;
+            }
             #livesearch-result {
                 background-color: rgb(255, 255, 255);
                 display: none;
@@ -265,5 +268,12 @@
 			{% google_analytics_tracking %}
 		{% endblock %}
 		{% block google-analytics-ecommerce %}{% endblock %}
+
+        <script>
+            $(function(){
+                $('.carousel').carousel();
+            });
+        </script>
+
 	</body>
 </html>
