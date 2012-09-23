@@ -150,3 +150,18 @@ def cart_for_header(context):
         amount_of_items_locale = int(cart.get_amount_of_items())
 
     return amount_of_items_locale
+
+@register.assignment_tag
+def mark_search_query(product_name, q):
+    l = len(q)
+    l_q = q.lower()
+    l_product_name = product_name.lower()
+    result = product_name
+
+    idx = l_product_name.rfind(l_q)
+    while idx > -1:
+        result = result[:idx+l] + "</strong>" + result[idx+l:]
+        result = result[:idx] + "<strong>" + result[idx:]
+        idx = l_product_name.rfind(l_q,0,idx)
+
+    return result

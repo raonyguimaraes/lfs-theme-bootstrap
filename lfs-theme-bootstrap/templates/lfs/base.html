@@ -47,12 +47,13 @@
             #livesearch-result {
                 background-color: rgb(255, 255, 255);
                 display: none;
-                margin-top: 7px;
+                margin-top: 39px;
                 padding: 0px;
                 position: absolute;
                 right: 1px;
-                min-width: 354px;
-                z-index: 1000;
+                min-width: 236px;
+                max-width: 320px;
+                z-index: 9999;
             }
             #livesearch-results-table {
                 margin-bottom: 0px;
@@ -118,8 +119,8 @@
                                 {% if header_categories %}
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="{% trans 'View Products' %}">
-                                            {% trans 'Products' %}
                                             <b class="caret"></b>
+                                            {% trans 'Products' %}
                                         </a>
 
                                         <ul class="dropdown-menu">
@@ -137,7 +138,7 @@
                                 <input type="hidden" name="livesearch" value="1" />
                                 <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url lfs_livesearch %}" />
                                 {# <button type="submit" class="btn btn-small">{% trans 'Go' %}</button> #}
-                                <div id="livesearch-result" class="well"></div>
+                                <ul id="livesearch-result" class="typeahead dropdown-menu hidden-phone"></ul>
                             </form>
                             <ul class="nav pull-right">
                                 {% cart_for_header as cart_amount %}
