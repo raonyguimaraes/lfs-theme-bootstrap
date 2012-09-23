@@ -47,9 +47,6 @@
             .carousel-control {
                 top: 50%;
             }
-            .carousel-inner {
-                overflow: ;
-            }
             .carousel .item > img {
                 width: 100%;
             }
@@ -227,6 +224,7 @@
                                 {% block breadcrumbs %}{% endblock %}
                             </div>
                         </div>
+                        {% block carousel %}{% endblock %}
                         <div class="row-fluid">
                             <div class="span12 hero-unit">
                                 {% block content %}{% endblock %}
