@@ -3,7 +3,7 @@
     <ul class="dropdown-menu">
         {% for category in categories %}
             <li {% if category.children %} class="dropdown-submenu"{% endif %}>
-                <a href="{{ category.category.get_absolute_url }}">{{ category.category.name }}</a>
+                <a {% if category.children %}tabindex="-1"{% endif %} href="{{ category.category.get_absolute_url }}">{{ category.category.name }}</a>
                 {% sub_categories_for_header category.children %}
             </li>
         {% endfor %}

@@ -123,10 +123,10 @@
                                             {% trans 'Products' %}
                                         </a>
 
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                             {% for category in header_categories %}
                                                 <li{% if category.children %} class="dropdown-submenu"{% endif %}>
-                                                    <a href="{{ category.category.get_absolute_url }}" title="{% trans 'View' %} {{ category.category.name }}">{{ category.category.name }}</a>
+                                                    <a {% if category.children %}tabindex="-1" {% endif %} href="{{ category.category.get_absolute_url }}" title="{% trans 'View' %} {{ category.category.name }}">{{ category.category.name }}</a>
                                                     {% sub_categories_for_header category.children %}
                                                 </li>
                                             {% endfor %}
@@ -138,7 +138,7 @@
                                 <input type="hidden" name="livesearch" value="1" />
                                 <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url lfs_livesearch %}" />
                                 {# <button type="submit" class="btn btn-small">{% trans 'Go' %}</button> #}
-                                <ul id="livesearch-result" class="typeahead dropdown-menu hidden-phone"></ul>
+                                <ul id="livesearch-result" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></ul>
                             </form>
                             <ul class="nav pull-right">
                                 {% cart_for_header as cart_amount %}
@@ -162,7 +162,7 @@
                                             <b class="caret"></b>
                                         </a>
 
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                             {% if user.is_superuser %}
                                                 {% if category %}
                                                     <li><a href="{% url lfs_manage_category category.id %}">{% trans 'Manage' %}</a></li>
@@ -265,6 +265,5 @@
 			{% google_analytics_tracking %}
 		{% endblock %}
 		{% block google-analytics-ecommerce %}{% endblock %}
-
 	</body>
 </html>
