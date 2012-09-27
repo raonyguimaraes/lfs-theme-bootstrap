@@ -2,27 +2,25 @@
 {% load lfs_tags %}
 
 {% if product.get_related_products %}
-    <div class="related-products-portlet portlet">
+    <div class="sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="nav-header">{% trans 'Related Products' %}</li>
+            <ul class="thumbnails">
+                {% for related_product in product.get_related_products %}
+                    <li class="span12">
+                        <a href="{{related_product.get_absolute_url}}" class="thumbnail">
+                            <div class="caption pull-left">
+                                <img alt="{{related_product.get_name}}" src="{{related_product.get_image.image.url_60x60}}" class="img-polaroid" />
+                            </div>
 
-        <div class="portlet-header">
-            {% trans 'Related Products' %}
-        </div>
-
-        <div class="portlet-body">
-            {% for related_product in product.get_related_products %}
-                <div class="portlet-item">
-                    <img alt="{{related_product.get_name}}"
-                         src="{{related_product.get_image.image.url_60x60}}" />
-                    <div>
-                        <a href="{{related_product.get_absolute_url}}">
-                            {{related_product.get_name}}
+                            <div class="caption clearfix">
+                                <span><strong>{{related_product.get_name}}</strong></span>
+                                <div>{{ related_product|get_price:request|currency:request }}</div>
+                            </div>
                         </a>
-                    </div>
-                    <div class="price">
-                        {{ related_product|get_price:request|currency:request }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </ul>
     </div>
 {% endif %}
