@@ -1,37 +1,40 @@
 {% load i18n %}
+{% load lfs_bootstrap_tags %}
 
-<h1>
-    {{ category.name }}
-</h1>
-<p>
-    {{ category.description|safe }}
-</p>
+<h1>{{ category.name }}</h1>
+
+<p>{{ category.description|safe }}</p>
+
 <div id="categories">
-    <table class="table">
-        {% for row in categories %}
-            <tr>
+    {% for row in categories %}
+        <div class="row-fluid">
+            <ul class="thumbnails">
                 {% for category in row %}
-                    <td>
-                        <h2>{{ category.name }}</h2>
-                        {% if category.get_image %}
-                            <div>
-                                <a href="{% url lfs_category category.slug %}">
-                                    <img src="{{ category.get_image.url_100x100 }}"
-                                         alt="{{ category.name }}" />
-                                </a>
+                    <li class="{{ categories.0|length|span_for_product_category }}">
+                        <div class="thumbnail" onclick="window.location='{% url lfs_category category.slug %}'">
+                            <div class="row-fluid">
+                                <div class="caption pull-left">
+                                    {% if category.get_image %}
+                                        <a href="{% url lfs_category category.slug %}">
+                                            <img alt="{{ category.name }}" src="{{ category.get_image.url_100x100 }}" class="img-polaroid" />
+                                        </a>
+                                    {% endif %}
+                                </div>
+                                <div class="caption clearfix">
+                                    <span class="lead"><strong>{{ category.name }}</strong></span>
+                                    <div>{{ category.short_description|removetags:"p"|safe }}</div>
+                                </div>
                             </div>
-                        {% endif %}
-                        <div>
-                            {{ category.short_description|safe }}
+
+                            <div class="row-fluid">
+                                <div class="caption pull-right">
+                                    <a class="btn btn-small btn-primary" href="{% url lfs_category category.slug %}">{% trans 'Details' %}</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pull-right">
-                            <a class="btn btn-small btn-primary"
-                               href="{% url lfs_category category.slug %}">{% trans 'Details' %}
-                            </a>
-                        </div>
-                    </td>
+                    </li>
                 {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
+            </ul>
+        </div>
+    {% endfor %}
 </div>

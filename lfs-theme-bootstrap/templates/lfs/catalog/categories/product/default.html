@@ -15,7 +15,7 @@
         <div class="row-fluid">
             <ul class="thumbnails">
                 {% for product in col %}
-                    <li class="{{ col|length|span_for_product_category }}">
+                    <li class="{{ products.0|length|span_for_product_category }}">
                         <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
                             <div class="row-fluid">
                                 <div class="caption pull-left">
@@ -31,49 +31,48 @@
                                     <div>{{ product.obj.get_short_description|removetags:"p"|safe }}</div>
                                 </div>
                             </div>
+
                             {% category_product_prices_gross product.obj.id %}
-                            <div class="caption">
-                                <div class="row-fluid">
-                                    <div class="pull-left">
-                                        {% if price_starting_from %}
-                                            {% trans "Starting at" %}
-                                        {% endif %}
-                                        {% if product.obj.get_for_sale %}
-                                            <span><s>{{ standard_price|currency:request }}*</s></span>
-                                            <span><strong>{{ price|currency:request }}</strong>*</span>
-                                        {% else %}
-                                            <span><strong>{{ price|currency:request }}</strong>*</span>
-                                        {% endif %}
-                                        {% if product.price_unit %}
-                                            / {{ product.price_unit }}
-                                        {% endif %}
-                                        {% if product.obj.get_active_packing_unit %}
-                                            <div>
-                                                {{ base_packing_price|currency:request }}* / {{ product.obj.get_packing_info.1 }}
-                                            </div>
-                                        {% endif %}
-                                        {% if product.obj.get_active_base_price %}
-                                            <div>
-                                                {% if base_price_starting_from %}
-                                                    {% trans "Starting at" %}
-                                                {% endif %}
-                                                {{ base_price|currency:request }}*
-                                                {% if product.obj.get_base_price_unit %}
-                                                    / {{ product.obj.get_base_price_unit }}
-                                                {% endif %}
-                                            </div>
-                                        {% endif %}
-                                        <div class="text-warning">
-                                            {% if product.price_includes_tax %}
-                                                {% trans '*inc. VAT' %}
-                                            {% else  %}
-                                                {% trans '*exc. VAT' %}
+                            <div class="row-fluid">
+                                <div class="caption pull-left">
+                                    {% if price_starting_from %}
+                                        {% trans "Starting at" %}
+                                    {% endif %}
+                                    {% if product.obj.get_for_sale %}
+                                        <span><s>{{ standard_price|currency:request }}*</s></span>
+                                        <span><strong>{{ price|currency:request }}</strong>*</span>
+                                    {% else %}
+                                        <span><strong>{{ price|currency:request }}</strong>*</span>
+                                    {% endif %}
+                                    {% if product.price_unit %}
+                                        / {{ product.price_unit }}
+                                    {% endif %}
+                                    {% if product.obj.get_active_packing_unit %}
+                                        <div>
+                                            {{ base_packing_price|currency:request }}* / {{ product.obj.get_packing_info.1 }}
+                                        </div>
+                                    {% endif %}
+                                    {% if product.obj.get_active_base_price %}
+                                        <div>
+                                            {% if base_price_starting_from %}
+                                                {% trans "Starting at" %}
+                                            {% endif %}
+                                            {{ base_price|currency:request }}*
+                                            {% if product.obj.get_base_price_unit %}
+                                                / {{ product.obj.get_base_price_unit }}
                                             {% endif %}
                                         </div>
+                                    {% endif %}
+                                    <div class="text-warning">
+                                        {% if product.price_includes_tax %}
+                                            {% trans '*inc. VAT' %}
+                                        {% else  %}
+                                            {% trans '*exc. VAT' %}
+                                        {% endif %}
                                     </div>
-                                    <div class="pull-right">
-                                        <a class="btn btn-primary" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
-                                    </div>
+                                </div>
+                                <div class="caption pull-right">
+                                    <a class="btn btn-small btn-primary" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
                                 </div>
                             </div>
                         </div>
