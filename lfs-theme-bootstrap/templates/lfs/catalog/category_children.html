@@ -1,10 +1,10 @@
 {% load lfs_bootstrap_tags %}
 {% if categories %}
-    <ul class="dropdown-menu">
+    <ul class="submenu">
         {% for category in categories %}
-            <li {% if category.children %} class="dropdown-submenu"{% endif %}>
-                <a {% if category.children %}tabindex="-1"{% endif %} href="{{ category.category.get_absolute_url }}">{{ category.category.name }}</a>
-                {% sub_categories_for_header category.children %}
+            <li>
+                <a style="padding-left: {{ paddingleft }}px;" {% if category.children %}tabindex="-1"{% endif %} href="{{ category.category.get_absolute_url }}">{{ category.category.name }}</a>
+                {% sub_categories_for_header category.children level %}
             </li>
         {% endfor %}
     </ul>

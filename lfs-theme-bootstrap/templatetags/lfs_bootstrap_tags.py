@@ -134,8 +134,10 @@ def categories_for_header(context):
 
 
 @register.inclusion_tag('lfs/catalog/category_children.html', takes_context=True)
-def sub_categories_for_header(context, categories):
-    return {"categories": categories}
+def sub_categories_for_header(context, categories, level=0):
+    level += 1
+    result = {"categories": categories, "level": level, "paddingleft": level * 10 + 20}
+    return result
 
 
 @register.assignment_tag(takes_context=True)

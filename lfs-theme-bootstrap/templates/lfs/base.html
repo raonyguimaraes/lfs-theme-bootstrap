@@ -48,6 +48,10 @@
             h2 {
                 font-size: 21px;
             }
+            .submenu {
+                list-style-type: none;
+                margin-left: 0px;
+            }
             .carousel-control {
                 top: 50%;
             }
@@ -135,8 +139,10 @@
 
                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                             {% for category in header_categories %}
-                                                <li{% if category.children %} class="dropdown-submenu"{% endif %}>
-                                                    <a {% if category.children %}tabindex="-1" {% endif %} href="{{ category.category.get_absolute_url }}" title="{% trans 'View' %} {{ category.category.name }}">{{ category.category.name }}</a>
+                                                <li>
+                                                    <a href="{{ category.category.get_absolute_url }}" title="{% trans 'View' %} {{ category.category.name }}">
+                                                        {{ category.category.name }}
+                                                    </a>
                                                     {% sub_categories_for_header category.children %}
                                                 </li>
                                             {% endfor %}
