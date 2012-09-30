@@ -18,13 +18,16 @@
 		<meta name="generator" content="LFS - http://www.getlfs.com" />
 
 		{% compress css %}
-			<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/lightbox/jquery.lightbox-0.5.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/lightbox/jquery.lightbox-0.5.css" />
 			<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery-ui-1.8.13.custom/css/smoothness/jquery-ui-1.8.13.custom.css" />
 			<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/jquery.jgrowl.css" />
 			<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap-2.1.1/css/bootstrap.min.css" />
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap-2.1.1/css/bootstrap-responsive.min.css" />
-        <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}cyborg/css/bootstrap.min.css" />-->
-		{% endcompress %}
+            {# <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}cyborg/css/bootstrap.min.css" /> #}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBox-2.1.0/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-buttons.css?v=1.0.3" type="text/css" media="screen" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
+        {% endcompress %}
 
 		<!--[if IE]>
 			{% compress css %}
@@ -98,6 +101,11 @@
 			<script type="text/javascript" src="{{ STATIC_URL }}jquery/lightbox/jquery.lightbox-0.5.js"></script>
 			<script type="text/javascript" src="{{ STATIC_URL }}js/lfs.js"></script>
 			<script type="text/javascript" src="{{ STATIC_URL }}bootstrap-2.1.1/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}fancyBox-2.1.0/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}fancyBox-2.1.0/source/jquery.fancybox.pack.js?v=2.1.0"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-buttons.js?v=1.0.3"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-media.js?v=1.0.3"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
 		{% endcompress %}
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -295,6 +303,17 @@
             $(function(){
                 $('.carousel').carousel();
                 $('.dropdown-toggle').dropdown();
+                $('.fancybox').fancybox({
+                    openEffect	: 'elastic',
+                    closeEffect	: 'elastic',
+                    nextEffect  : 'fade',
+                    prevEffect : 'fade',
+                    nextSpeed : 'slow',
+                    prevSpeed : 'slow',
+                    arrows : false,
+                    closeBtn : false,
+                    nextClick : true
+                });
             });
         </script>
 
