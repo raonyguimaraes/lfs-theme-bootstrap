@@ -40,8 +40,8 @@
                                     {% endif %}
                                     {% if product.obj.get_for_sale %}
                                         <div nowrap="nowrap">
-                                            <span><s>{{ standard_price|currency:request }}*</s></span>
                                             <span class="label label-important">{% trans 'On Sale' %}</span>
+                                            <span><s>{{ standard_price|currency:request }}*</s></span>
                                             <span><strong>{{ price|currency:request }}</strong>*</span>
                                         </div>
                                     {% else %}

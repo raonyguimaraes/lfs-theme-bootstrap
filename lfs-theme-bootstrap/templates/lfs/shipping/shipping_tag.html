@@ -1,14 +1,17 @@
-    {% load i18n %}
+{% load i18n %}
 {% load lfs_tags %}
 
-<div class="shipping-information">
+<div class="row-fluid">
     {% if deliverable %}
-        <div class="deliverable">
-            {% trans 'Delivery time' %}: {{delivery_time}}
+        <div class="span5 product-label">
+            <strong>{% trans 'Delivery time' %}:</strong>
+        </div>
+        <div class="product-detail pull-right">
+            <span class="text-success">{{delivery_time}}</span>
         </div>
     {% else %}
-        <div class="not-deliverable">
-            {% trans 'Not deliverable' %}
-        </div>        
+        <div class="span12">
+            <span class="text-error">{% trans 'Not deliverable' %}</span>
+        </div>
     {% endif %}
 </div>

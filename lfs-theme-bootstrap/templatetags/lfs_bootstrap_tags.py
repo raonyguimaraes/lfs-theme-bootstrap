@@ -99,13 +99,6 @@ def span_for_product_category(value):
         raise TemplateSyntaxError(_('%s Product cols are not allowed in preferences. Valid values for Product cols are 1, 2, 3, 4 and 6.') % value)
 
 
-@register.filter
-def span_for_main_content(value, arg):
-    if arg:
-        return value - 2
-    return value
-
-
 @register.assignment_tag(takes_context=True)
 def categories_for_header(context):
     request = context.get("request")
