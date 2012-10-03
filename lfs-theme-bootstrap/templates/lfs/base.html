@@ -338,7 +338,8 @@
             }
 
             $(function(){
-
+                $('#main-content').ready(CalcMainSpan);
+                $(window).resize(CalcMainSpan);
 
                 $('.carousel').carousel();
                 $('.dropdown-toggle').dropdown();
@@ -351,10 +352,8 @@
                     prevSpeed : 'slow',
                     arrows : false,
                     closeBtn : false,
-                    nextClick : true,
+                    nextClick : true
                 });
-                $('#main-content').ready(CalcMainSpan);
-                $(window).resize(CalcMainSpan);
             });
         </script>
 
