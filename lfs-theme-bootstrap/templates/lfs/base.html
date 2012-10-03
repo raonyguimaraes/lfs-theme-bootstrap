@@ -2,7 +2,6 @@
 {% load lfs_tags %}
 {% load lfs_bootstrap_tags %}
 {% load lfs_portlets_tags %}
-{% load compress %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +27,7 @@
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBox-2.1.0/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
 
 		<!--[if IE]>
-			{% compress css %}
-				<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/iefixes.css" />
-			{% endcompress %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/iefixes.css" />
 		<![endif]-->
 
         <style type="text/css">
