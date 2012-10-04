@@ -272,6 +272,7 @@
                         {% endif %}
                     {% endblock %}
                 </div>
+
             {% endblock %}
 		</div>
 
@@ -313,20 +314,12 @@
                 var isRightSlot = (rightSlot.length && rightSlot.css('display') == 'block');
                 var span = 'span12';
 
-                //alert(leftSlot.css('display'));
+                if(isLeftSlot && isRightSlot)
+                    span = 'span8';
+                else if(isLeftSlot || isRightSlot)
+                    span = 'span10';
 
                 content.removeClass();
-
-                if(isLeftSlot && isRightSlot) {
-                    span = 'span8';
-                }
-                else if(isLeftSlot){
-                    span = 'span10';
-                }
-                else if(isRightSlot){
-                    span = 'span10';
-                }
-
                 content.addClass(span);
             }
 
@@ -349,6 +342,5 @@
                 });
             });
         </script>
-
 	</body>
 </html>
