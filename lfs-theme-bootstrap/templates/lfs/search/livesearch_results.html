@@ -10,7 +10,7 @@
         </li>
     {% endfor %}
     <li>
-        <a href="{% url lfs_search %}?q={{ q }}">
+        <a href="{% url 'lfs_search' %}?q={{ q }}">
             {% trans 'All results' %} ({{ total }})
         </a>
     </li>

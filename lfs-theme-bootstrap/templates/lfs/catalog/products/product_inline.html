@@ -30,7 +30,7 @@
         {% if product.is_configurable_product %}
             <table class="cp-properties"
                    id="cp-url"
-                   data="{% url lfs_calculate_price product.id %}">
+                   data="{% url 'lfs_calculate_price' product.id %}">
 
                 {% for property in properties %}
                     <tr>
@@ -82,7 +82,7 @@
                 {# List #}
                 {% if display_variants_list %}
                     <table class="product-variants lfs-default"
-                           data="{% url lfs_select_variant %}">
+                           data="{% url 'lfs_select_variant' %}">
                         <tr>
                             <th></th>
                             <th>
@@ -222,7 +222,7 @@
             <div class="tags">
                 <h1 class="section">{% trans 'Tags' %}</h1>
                 {% for tag in tags %}
-                    <a href="{% url product_tag_detail tag.name %}">
+                    <a href="{% url 'product_tag_detail' tag.name %}">
                         {{ tag }}</a>
                 {% endfor %}
             </div>
@@ -234,7 +234,7 @@
                 <h1 class="section">{% trans 'Tag cloud' %}</h1>
                 <div class="tag-cloud">
                     {% for tag in cloud %}
-                        <a href="{% url product_tag_detail tag.name %}" style="font-size:1{{ tag.font_size }}px">
+                        <a href="{% url 'product_tag_detail' tag.name %}" style="font-size:1{{ tag.font_size }}px">
                             {{ tag }}</a>
                     {% endfor %}
                 </div>
@@ -268,7 +268,7 @@
         </div>
 
         {# Product Details #}
-        <form id="product-form" action="{% url lfs.catalog.views.product_form_dispatcher %}" data="{% url lfs_select_variant_from_properties %}" method="post" class="form-horizontal well">
+        <form id="product-form" action="{% url 'lfs.catalog.views.product_form_dispatcher' %}" data="{% url 'lfs_select_variant_from_properties' %}" method="post" class="form-horizontal well">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{ product.id }}" />
 
@@ -303,7 +303,7 @@
             <div class="row-fluid">
                 {% if product.is_deliverable %}
                     {% if product.active_packing_unit %}
-                        <div id="packing-url" class="input-append pull-right" data="{% url lfs_calculate_packing product.id %}">
+                        <div id="packing-url" class="input-append pull-right" data="{% url 'lfs_calculate_packing' product.id %}">
                             <input class="input-mini input-micro" name="quantity" size="3" type="number" value="{{ quantity }}" style="text-align: right;" /> {{ product.unit }}
                             <button type="submit" class="btn btn-primary" name="add-to-cart">{% trans 'Add to cart' %}</button>
                         </div>
@@ -324,7 +324,7 @@
                     {% endif %}
                     <div>{{ packing_result }}</div>
                 {% else %}
-                    <button class="btn btn-primary" onclick="window.location='{% url lfs_contact_form %}'; return false" name="">{% trans 'Send request' %}</button>
+                    <button class="btn btn-primary" onclick="window.location='{% url 'lfs_contact_form' %}'; return false" name="">{% trans 'Send request' %}</button>
                 {% endif %}
             </div>
 

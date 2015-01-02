@@ -141,7 +141,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-						<a class="brand" href="{% url lfs.core.views.shop_view %}">LFS - Lightning Fast Shop</a>
+						<a class="brand" href="{% url 'lfs.core.views.shop_view' %}">LFS - Lightning Fast Shop</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
                                 {% block tabs %}
@@ -169,16 +169,16 @@
                                     </li>
                                 {% endif %}
                             </ul>
-                            <form class="navbar-form pull-right" action="{% url lfs_search %}" autocomplete="off">
+                            <form class="navbar-form pull-right" action="{% url 'lfs_search' %}" autocomplete="off">
                                 <input type="hidden" name="livesearch" value="1" />
-                                <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url lfs_livesearch %}" />
+                                <input id="search-input" class="search-query" type="text" placeholder="Search" name="q" autocomplete="off" data-url="{% url 'lfs_livesearch' %}" />
                                 {# <button type="submit" class="btn btn-small">{% trans 'Go' %}</button> #}
                                 <ul id="livesearch-result" class="dropdown-menu"></ul>
                             </form>
                             <ul class="nav pull-right">
                                 {% cart_for_header as cart_amount %}
                                 <li>
-                                    <a href="{% url lfs.cart.views.cart %}">
+                                    <a href="{% url 'lfs.cart.views.cart' %}">
                                         <i class="icon-shopping-cart icon"></i>
                                         {% if cart_amount > 0 %}
                                             <span class="badge badge-info">{{ cart_amount }}</span>
@@ -200,29 +200,29 @@
                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                             {% if user.is_superuser %}
                                                 {% if category %}
-                                                    <li><a href="{% url lfs_manage_category category.id %}">{% trans 'Manage' %}</a></li>
+                                                    <li><a href="{% url 'lfs_manage_category' category.id %}">{% trans 'Manage' %}</a></li>
                                                     <li class="divider"></li>
                                                 {% endif %}
                                                 {% if product %}
-                                                    <li><a href="{% url lfs_manage_product product.id %}">{% trans 'Manage' %}</a></li>
+                                                    <li><a href="{% url 'lfs_manage_product' product.id %}">{% trans 'Manage' %}</a></li>
                                                     <li class="divider"></li>
                                                 {% endif %}
                                                 {% if page %}
-                                                    <li><a href="{% url lfs_manage_page page.id %}">{% trans 'Manage' %}</a></li>
+                                                    <li><a href="{% url 'lfs_manage_page' page.id %}">{% trans 'Manage' %}</a></li>
                                                     <li class="divider"></li>
                                                 {% endif %}
                                                 {% if not category and not product and not page %}
-                                                    <li><a href="{% url lfs_manage_dashboard %}">{% trans 'Manage' %}</a></li>
+                                                    <li><a href="{% url 'lfs_manage_dashboard' %}">{% trans 'Manage' %}</a></li>
                                                     <li class="divider"></li>
                                                 {% endif %}
                                             {% endif %}
-                                            <li><a href="{% url lfs_my_account %}">{% trans 'My account' %}</a></li>
+                                            <li><a href="{% url 'lfs_my_account' %}">{% trans 'My account' %}</a></li>
                                             <li><a href="/logout">{% trans 'Logout' %}</a></li>
                                         </ul>
                                     </li>
                                 {% else %}
                                     {% if not ANON_ONLY %}
-                                        <li><a href="{% url lfs_login %}">{% trans 'Login' %}</a></li>
+                                        <li><a href="{% url 'lfs_login' %}">{% trans 'Login' %}</a></li>
                                     {% endif %}
                                 {% endif %}
                                 <li class="divider-vertical"></li>

@@ -18,7 +18,7 @@
     <h1 class="page-header">{% trans 'Search results' %}</h1>
 
     <p>
-        <form class="form-inline" action="{% url lfs_search %}">
+        <form class="form-inline" action="{% url 'lfs_search' %}">
             <label>{% trans 'Search' %}:</label>
             <input id="search-input" type="text" name="q" />
             <button class="btn btn-primary" type="submit">{% trans 'Go' %}</button>
@@ -38,11 +38,11 @@
         {% for product in products %}
             <ul class="thumbnails">
                 <li class="span12">
-                    <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
+                    <div class="thumbnail" onclick="window.location='{% url 'lfs.catalog.views.product_view' product.slug %}'">
                         <div class="row-fluid">
                             <div class="caption pull-left">
                                 {% if product.get_image.image.url_100x100 %}
-                                    <a href="{% url lfs.catalog.views.product_view product.slug %}">
+                                    <a href="{% url 'lfs.catalog.views.product_view' product.slug %}">
                                         <img alt="{{ product.name }}" src="{{ product.get_image.image.url_100x100 }}" class="img-polaroid" />
                                     </a>
                                 {% endif %}
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                    <a class="btn btn-primary" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
+                                    <a class="btn btn-primary" href="{% url 'lfs_product' product.slug %}">{% trans 'Details' %}</a>
                                 </div>
                             </div>
                         </div>

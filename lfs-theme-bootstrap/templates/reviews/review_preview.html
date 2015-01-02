@@ -9,7 +9,7 @@
 {% block content %}
     <h1>{% trans 'Preview' %}</h1>
     
-    <form action="{% url reviews_reedit %}"
+    <form action="{% url 'reviews_reedit' %}"
           method="post">
           
         <label for="user_name">{% trans 'Your name' %}:</label>

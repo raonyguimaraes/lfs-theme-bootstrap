@@ -16,7 +16,7 @@
     <h1 class="page-header">{% trans 'Contact form' %}</h1>
     <p>{% trans 'Please leave us a message. We will answer as soon as possible.' %}</p>
 
-    <form class="form-horizontal" action="{% url lfs_contact_form %}" method="post">
+    <form class="form-horizontal" action="{% url 'lfs_contact_form' %}" method="post">
         {% csrf_token %}
         {% include "lfs/shop/lfs_form.html" %}
         <div class="control-group">

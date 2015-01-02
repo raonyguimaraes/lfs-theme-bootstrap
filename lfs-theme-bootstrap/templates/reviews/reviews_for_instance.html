@@ -41,7 +41,7 @@
     {% else %}
         <div class="buttons">
             <a class="button left"
-               href="{% url reviews_add content_type_id content_id %}">{% trans 'Add review' %}</a>
+               href="{% url 'reviews_add' content_type_id content_id %}">{% trans 'Add review' %}</a>
         </div>
     {% endif %}
 </div>

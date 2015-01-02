@@ -22,14 +22,14 @@
 
                 <p>{% trans 'If you are already customer you can login. Your address data will be stored in your account.' %}</p>
 
-                <form action="{% url lfs_login %}" method="post">
+                <form action="{% url 'lfs_login' %}" method="post">
                     {% csrf_token %}
                     <table>
                         {{ login_form }}
                         <tr>
                             <th></th>
                             <td class="pull-right">
-                                <a href="{% url lfs_password_reset %}">{% trans 'Forgot password?' %}</a>
+                                <a href="{% url 'lfs_password_reset' %}">{% trans 'Forgot password?' %}</a>
                             </td>
                         </tr>
                     </table>
@@ -45,7 +45,7 @@
 
                     <p>{% trans 'If you are not already a customer you can register in order to store your address data and to follow the state of your orders.' %}</p>
 
-                    <form action="{% url lfs_login %}" method="post">
+                    <form action="{% url 'lfs_login' %}" method="post">
                         {% csrf_token %}
                         <table>
                             {{ register_form }}

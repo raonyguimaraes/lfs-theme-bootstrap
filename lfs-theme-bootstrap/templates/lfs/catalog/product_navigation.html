@@ -5,7 +5,7 @@
         <div class="span12">
             <ul class="pager">
                 {% if previous %}
-                    <li class="previous"><a href="{% url lfs_product previous %}">&larr; {% trans 'Previous' %}</a></li>
+                    <li class="previous"><a href="{% url 'lfs_product' previous %}">&larr; {% trans 'Previous' %}</a></li>
                 {% else %}
                     <li class="previous disabled"><a href="#">&larr; {% trans 'Previous' %}</a></li>
                 {% endif %}
@@ -13,7 +13,7 @@
                 {# <span style="border: 0px; background-color: transparent;">{{ current }} {% trans 'of' %} {{ total }}</span> #}
 
                 {% if next %}
-                    <li class="next"><a href="{% url lfs_product next %}">{% trans 'Next' %} &rarr;</a></li>
+                    <li class="next"><a href="{% url 'lfs_product' next %}">{% trans 'Next' %} &rarr;</a></li>
                 {% else %}
                     <li class="next disabled"><a href="#">{% trans 'Next' %} &rarr;</a></li>
                 {% endif %}

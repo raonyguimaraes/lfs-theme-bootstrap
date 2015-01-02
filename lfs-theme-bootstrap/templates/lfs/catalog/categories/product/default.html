@@ -16,11 +16,11 @@
             <ul class="thumbnails">
                 {% for product in col %}
                     <li class="{{ products.0|length|span_for_product_category }}">
-                        <div class="thumbnail" onclick="window.location='{% url lfs.catalog.views.product_view product.slug %}'">
+                        <div class="thumbnail" onclick="window.location='{% url 'lfs.catalog.views.product_view' product.slug %}'">
                             <div class="row-fluid">
                                 <div class="caption pull-left">
                                     {% if product.image.url_100x100 %}
-                                        <a href="{% url lfs.catalog.views.product_view product.slug %}">
+                                        <a href="{% url 'lfs.catalog.views.product_view' product.slug %}">
                                             <img alt="{{ product.name }}" src="{{ product.image.url_100x100 }}" class="img-polaroid" />
                                         </a>
                                     {% endif %}
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="caption pull-right">
-                                    <a class="btn btn-small btn-primary" href="{% url lfs_product product.slug %}">{% trans 'Details' %}</a>
+                                    <a class="btn btn-small btn-primary" href="{% url 'lfs_product product.slug' %}">{% trans 'Details' %}</a>
                                 </div>
                             </div>
                         </div>

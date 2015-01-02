@@ -6,7 +6,7 @@
     <h1 class="page-header">{% trans 'Your Data' %}</h1>
 
     <h2>{% trans 'E-Mail' %}</h2>
-    <form action="{% url lfs_save_email %}"
+    <form action="{% url 'lfs_save_email' %}"
           method="post">
         <table>
             {{email_form}}
@@ -27,7 +27,7 @@
         <h2>{% trans 'Address' %}</h2>
     {% endif %}
 
-    <form action="{% url lfs_save_addresses %}"
+    <form action="{% url 'lfs_save_addresses' %}"
           method="post">
         <table class="lfs-default">
             {% if show_shipping_address %}
@@ -74,7 +74,7 @@
     {% if bank_account_form %}
         <h2>{% trans 'Bank account' %}</h2>
 
-        <form action="{% url lfs_my_data %}"
+        <form action="{% url 'lfs_my_data' %}"
               method="post">
             <table>
                 {{bank_account_form}}

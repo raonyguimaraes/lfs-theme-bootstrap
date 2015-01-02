@@ -11,11 +11,11 @@
             <ul class="thumbnails">
                 {% for category in row %}
                     <li class="{{ categories.0|length|span_for_product_category }}">
-                        <div class="thumbnail" onclick="window.location='{% url lfs_category category.slug %}'">
+                        <div class="thumbnail" onclick="window.location='{% url 'lfs_category' category.slug %}'">
                             <div class="row-fluid">
                                 <div class="caption pull-left">
                                     {% if category.get_image %}
-                                        <a href="{% url lfs_category category.slug %}">
+                                        <a href="{% url 'lfs_category' category.slug %}">
                                             <img alt="{{ category.name }}" src="{{ category.get_image.url_100x100 }}" class="img-polaroid" />
                                         </a>
                                     {% endif %}
@@ -28,7 +28,7 @@
 
                             <div class="row-fluid">
                                 <div class="caption pull-right">
-                                    <a class="btn btn-small btn-primary" href="{% url lfs_category category.slug %}">{% trans 'Details' %}</a>
+                                    <a class="btn btn-small btn-primary" href="{% url 'lfs_category' category.slug %}">{% trans 'Details' %}</a>
                                 </div>
                             </div>
                         </div>

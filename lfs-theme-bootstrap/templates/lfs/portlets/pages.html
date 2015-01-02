@@ -6,7 +6,7 @@
             {% for page in pages %}
                 <li><a href="{{page.get_absolute_url}}">{{page.title}}</a></li>
             {% endfor %}
-            <li><a href="{% url lfs_pages %}">{% trans 'More information' %}</a></li>
+            <li><a href="{% url 'lfs_pages' %}">{% trans 'More information' %}</a></li>
         </ul>
     </div>
 {% endif %}
